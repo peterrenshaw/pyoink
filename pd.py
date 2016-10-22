@@ -6,6 +6,7 @@
 # name: pd.py
 # date: 2016OCT21
 # prog: pr
+# srcs: <https://github.com/nficano/pytube>
 # desc: command line downloader for youtube
 #=====
 
