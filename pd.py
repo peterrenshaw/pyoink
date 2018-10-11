@@ -2,6 +2,12 @@
 # ~*~ encoding: utf-8 ~*~
 
 
+#+++++++ BROKEN +++++++++
+# THIS CODE IS BROKEN
+# DO NOT USE 
+# LEFT FOR HISTORICAL REASONS
+#+++++++ BROKEN +++++++++
+
 #=====
 # name: pd.py
 # date: 2016OCT21
