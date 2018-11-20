@@ -1,5 +1,6 @@
 ### pyoink
-
+2018NOV20
+* fixed as per this comment <https://github.com/nficano/pytube/issues/333#issuecomment-436479121>
 2018NOV07
 * Oh-no: broken, posted problem at <https://github.com/nficano/pytube/issues/333#issuecomment-436479121>
 

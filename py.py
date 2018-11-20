@@ -4,7 +4,8 @@
 
 #=====
 # name: py.py
-# date: 2018OCT11
+# date: 2018NOV07
+#       2018OCT11
 #       2016OCT21
 # prog: pr
 # srcs: <https://github.com/nficano/pytube>
@@ -23,7 +24,7 @@ from pytube import YouTube
 from pprint import pprint
 
 
-VERSION = "0.2"
+VERSION = "0.2.1"
 PROG_NAME = "PYOINK"
 DESTINATION = "/Users/pr/Music"
 ITAG_VID_TYPE = "18"             # this gives .mp4,360
