@@ -12,6 +12,10 @@
 # desc: command line downloader for youtube
 #       updated the API in 2018, so this needs to be re-written
 #       to work with the new API.
+#
+# usge: ./py.py -u https://www.youtube.com/watch?v=RANDOM_ID URL
+#               -t "title of video"                          TITLE
+#               -l                                           LOG 
 #=====
 
 
@@ -102,10 +106,17 @@ def main():
 
             # log details to file
             if options.log:
+
                 # build option log data
-                opts = []
-                for option in youtube.streams.all():
-                    opts.append("{}".format(option))
+                # extract stream by the itag
+                # find explicit details of stream 
+                # src: <https://python-pytube.readthedocs.io/en/latest/_modules/pytube/streams.html#Stream>
+                opts = {}
+                opts['filesize']=youtube.streams.get_by_itag(itag).filesize
+                opts['quality']=youtube.streams.get_by_itag(itag).quality
+                opts['resolution']=youtube.streams.get_by_itag(itag).resolution
+                opts['includes_video_track']=youtube.streams.get_by_itag(itag).includes_video_track
+                opts['subtype']=youtube.streams.get_by_itag(itag).subtype
 
                 # file directory and filename
                 fn = build_fn(PROG_NAME.lower())

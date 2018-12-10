@@ -1,5 +1,21 @@
 ### pyoink
 
+
+2018DEC11
+* usage CLI options
+
+```
+ opt	description
+ ====================================
+ -u	grab a youtube URL at -u URL
+ -t	save the TITLE as string supplied
+ -l	log the results
+
+ ./py.py -u https://www.youtube.com/watch?v=RANDOM_ID 
+         -t "title of video"                          
+         -l                                            
+```
+
 2018DEC10
 * added logging capability using -l (log) option
 
