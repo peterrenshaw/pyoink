@@ -17,14 +17,24 @@
 
 import os
 import sys
+import time
+from datetime import datetime
 from optparse import OptionParser
+
+
+from tools import save
+from tools import py2json
+from tools import str2json
+from tools import build_fn
+from tools import build_fpn
+from tools import build_ext
 
 
 from pytube import YouTube
 from pprint import pprint
 
 
-VERSION = "0.2.1"
+VERSION = "0.2.2"
 PROG_NAME = "PYOINK"
 DESTINATION = "/Users/pr/Music"
 ITAG_VID_TYPE = "18"             # this gives .mp4,360
@@ -40,6 +50,7 @@ def main():
     parser.add_option("-t", "--title", dest="title", help="title of file")
     parser.add_option("-v", "--video", dest="video", help="display video details")
     parser.add_option("-i", "--itag", dest="itag", help="set itag video display option")
+    parser.add_option("-l", "--log",  dest="log", action="store_true", help="log the results to file")
     options, args = parser.parse_args()
 
 
@@ -60,7 +71,7 @@ def main():
             # video itag option(s) to show
             if options.video: 
                 print("* show video options")
-                for option in youtub.streams.all():
+                for option in youtube.streams.all():
                     print("<{}>".format(option))
                 sys.exit(0)
 
@@ -88,6 +99,35 @@ def main():
 
 
             print("* url:\t\t{}\n* title:\t{}\n* filepath:\t{}".format(url, options.title.lower(), os.path.join(DESTINATION, title.strip())))
+
+            # log details to file
+            if options.log:
+                # build option log data
+                opts = []
+                for option in youtube.streams.all():
+                    opts.append("{}".format(option))
+
+                # file directory and filename
+                fn = build_fn(PROG_NAME.lower())
+                fpn = build_fpn(os.curdir, fn)
+
+                # create data, jsonify, pretty
+                t = datetime.now()
+                dt = time.mktime(t.timetuple())
+                data = {'url': url,
+                        'filepath': fpn,
+                        'title': options.title, 
+                        'itag': itag, 
+                        'options': opts, 
+                        'datetime': dt}
+                jd = py2json(data, is_pretty=True)                
+
+                # save to file
+                save(fpn, jd)
+                print("* logging to file <{}>".format(fpn))
+
+
+            youtube = None
             sys.exit(0)
         else:
             print("Error: you must supply a suitable TITLE")

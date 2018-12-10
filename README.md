@@ -1,5 +1,44 @@
 ### pyoink
 
+2018DEC10
+* added logging capability using -l (log) option
+
+* here is the log, as you see I need to filter for itag.
+
+```
+{
+    "datetime": 1544421982.0,
+    "filepath": "./pyoink.json",
+    "itag": "18",
+    "options": [
+        "<Stream: itag=\"22\" mime_type=\"video/mp4\" res=\"720p\" fps=\"30fps\" vcodec=\"avc1.64001F\" acodec=\"mp4a.40.2\">",
+        "<Stream: itag=\"43\" mime_type=\"video/webm\" res=\"360p\" fps=\"30fps\" vcodec=\"vp8.0\" acodec=\"vorbis\">",
+        "<Stream: itag=\"18\" mime_type=\"video/mp4\" res=\"360p\" fps=\"30fps\" vcodec=\"avc1.42001E\" acodec=\"mp4a.40.2\">",
+        "<Stream: itag=\"36\" mime_type=\"video/3gpp\" res=\"240p\" fps=\"30fps\" vcodec=\"mp4v.20.3\" acodec=\"mp4a.40.2\">",
+        "<Stream: itag=\"17\" mime_type=\"video/3gpp\" res=\"144p\" fps=\"30fps\" vcodec=\"mp4v.20.3\" acodec=\"mp4a.40.2\">",
+        "<Stream: itag=\"137\" mime_type=\"video/mp4\" res=\"1080p\" fps=\"30fps\" vcodec=\"avc1.640028\">",
+        "<Stream: itag=\"248\" mime_type=\"video/webm\" res=\"1080p\" fps=\"30fps\" vcodec=\"vp9\">",
+        "<Stream: itag=\"136\" mime_type=\"video/mp4\" res=\"720p\" fps=\"30fps\" vcodec=\"avc1.4d401f\">",
+        "<Stream: itag=\"247\" mime_type=\"video/webm\" res=\"720p\" fps=\"30fps\" vcodec=\"vp9\">",
+        "<Stream: itag=\"135\" mime_type=\"video/mp4\" res=\"480p\" fps=\"30fps\" vcodec=\"avc1.4d401e\">",
+        "<Stream: itag=\"244\" mime_type=\"video/webm\" res=\"480p\" fps=\"30fps\" vcodec=\"vp9\">",
+        "<Stream: itag=\"134\" mime_type=\"video/mp4\" res=\"360p\" fps=\"30fps\" vcodec=\"avc1.4d401e\">",
+        "<Stream: itag=\"243\" mime_type=\"video/webm\" res=\"360p\" fps=\"30fps\" vcodec=\"vp9\">",
+        "<Stream: itag=\"133\" mime_type=\"video/mp4\" res=\"240p\" fps=\"30fps\" vcodec=\"avc1.4d4015\">",
+        "<Stream: itag=\"242\" mime_type=\"video/webm\" res=\"240p\" fps=\"30fps\" vcodec=\"vp9\">",
+        "<Stream: itag=\"160\" mime_type=\"video/mp4\" res=\"144p\" fps=\"30fps\" vcodec=\"avc1.4d400c\">",
+        "<Stream: itag=\"278\" mime_type=\"video/webm\" res=\"144p\" fps=\"30fps\" vcodec=\"vp9\">",
+        "<Stream: itag=\"140\" mime_type=\"audio/mp4\" abr=\"128kbps\" acodec=\"mp4a.40.2\">",
+        "<Stream: itag=\"171\" mime_type=\"audio/webm\" abr=\"128kbps\" acodec=\"vorbis\">"
+    ],
+    "title": "compuphile quick sort",
+    "url": "https://www.youtube.com/watch?v=XE4VP_8Y0BU"
+}
+```
+
+* git pull, okay. why?
+
+
 2018DEC03
 * broke again
 
