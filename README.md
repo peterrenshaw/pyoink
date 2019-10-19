@@ -11,12 +11,14 @@
 # date: 2019OCT19
 # prog: pr
 # desc: usual README stuff: log, ideas, problems
+# sorc: slant @ <http://www.network-science.de/ascii/>
 #=========       
 
 
 #### pyoink
 
 2019OCT19
+* SLANT @ <http://www.network-science.de/ascii/>
 * improvements to reporting stream
 * failed
 - re-installed, failed
