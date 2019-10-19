@@ -2,9 +2,19 @@
 # ~*~ encoding: utf-8 ~*~
 
 
+"""                      _       __  
+      ____  __  ______  (_)___  / /__
+     / __ \/ / / / __ \/ / __ \/ //_/
+    / /_/ / /_/ / /_/ / / / / / ,<   
+   / .___/\__, /\____/_/_/ /_/_/|_|  
+  /_/    /____/  
+                    
+"""
+
 #=====
 # name: py.py
-# date: 2018NOV07
+# date: 2019OCT16
+#       2018NOV07
 #       2018OCT11
 #       2016OCT21
 # prog: pr
@@ -38,10 +48,12 @@ from pytube import YouTube
 from pprint import pprint
 
 
-VERSION = "0.2.2"
+VERSION = "0.2.3"
 PROG_NAME = "PYOINK"
 DESTINATION = "/Users/pr/Music"
-ITAG_VID_TYPE = "18"             # this gives .mp4,360
+ITAG_VID_TYPE_LO = "18"            # this gives .mp4,360
+ITAG_VID_TYPE_HI = "22"            # this gives .mp4,720
+ITAG_VID_TYPE = ITAG_VID_TYPE_LO   # default to LO
 
 
 #======
@@ -68,9 +80,13 @@ def main():
 
 
             title = options.title.strip()
-            title = title.replace(" ","-")
-            youtube = YouTube(url)
+            title = title.lower()           # lowercase 
+            title = title.replace("-","")   # remove existing dash
+            title = title.replace(" ","-")  # replace space with dash
+            print("* dest <{}>/<{}>".format(DESTINATION, title))
 
+
+            youtube = YouTube(url)
 
             # video itag option(s) to show
             if options.video: 
@@ -93,7 +109,20 @@ def main():
 
 
             # -------- start download --------
-            print("* download <{fs} bytes>".format(fs=stream.filesize,))
+            print("* stream")
+            print("- abr\t\t\t({})".format(stream.abr))
+            print("- audio codec\t\t({})".format(stream.audio_codec))
+            #if stream.default_filename: print("\t- default filename\t\t\t({})".format(stream.default_filename))
+            print("- filesize\t\t({})".format(stream.filesize))
+            print("- fps\t\t\t({})".format(stream.fps))
+            print("- quality\t\t({})".format(stream.quality))
+            print("- res\t\t\t({})".format(stream.res))
+            print("- resolution\t\t({})".format(stream.resolution))
+            print("- s\t\t\t({})".format(stream.s))
+            print("- sp\t\t\t({})".format(stream.sp))
+            print("- type\t\t\t({})".format(stream.type))
+            print("- url\t\t\t<{}>".format(stream.url))
+            print("- video codec\t\t\t({})".format(stream.video_codec))
             try:
                 stream.download(output_path=DESTINATION, filename=title)
                 sys.stdout.write("* ok\n")

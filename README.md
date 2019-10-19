@@ -1,4 +1,20 @@
-### pyoink
+
+                         _       __  
+      ____  __  ______  (_)___  / /__
+     / __ \/ / / / __ \/ / __ \/ //_/
+    / /_/ / /_/ / /_/ / / / / / ,<   
+   / .___/\__, /\____/_/_/ /_/_/|_|  
+  /_/    /____/  
+                    
+
+
+#### pyoink
+
+2019OCT19
+* improvements to reporting stream
+* failed
+- re-installed, failed
+- reset old code, compiled... works
 
 
 2018DEC11
