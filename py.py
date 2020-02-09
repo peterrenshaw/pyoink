@@ -113,11 +113,11 @@ def main():
             #if stream.default_filename: print("\t- default filename\t\t\t({})".format(stream.default_filename))
             print("- filesize\t\t({})".format(stream.filesize))
             print("- fps\t\t\t({})".format(stream.fps))
-            print("- quality\t\t({})".format(stream.quality))
-            print("- res\t\t\t({})".format(stream.res))
+            #print("- quality\t\t({})".format(stream.quality))
+            #print("- res\t\t\t({})".format(stream.res))
             print("- resolution\t\t({})".format(stream.resolution))
-            print("- s\t\t\t({})".format(stream.s))
-            print("- sp\t\t\t({})".format(stream.sp))
+            #print("- s\t\t\t({})".format(stream.s))
+            #print("- sp\t\t\t({})".format(stream.sp))
             print("- type\t\t\t({})".format(stream.type))
             print("- url\t\t\t<{}>".format(stream.url))
             print("- video codec\t\t\t({})".format(stream.video_codec))
@@ -140,7 +140,7 @@ def main():
                 # src: <https://python-pytube.readthedocs.io/en/latest/_modules/pytube/streams.html#Stream>
                 opts = {}
                 opts['filesize']=youtube.streams.get_by_itag(itag).filesize
-                opts['quality']=youtube.streams.get_by_itag(itag).quality
+                #opts['quality']=youtube.streams.get_by_itag(itag).quality
                 opts['resolution']=youtube.streams.get_by_itag(itag).resolution
                 opts['includes_video_track']=youtube.streams.get_by_itag(itag).includes_video_track
                 opts['subtype']=youtube.streams.get_by_itag(itag).subtype

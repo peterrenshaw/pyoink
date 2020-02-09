@@ -17,6 +17,49 @@
 
 #### pyoink
 
+2020FEB10
+* switched to <https://github.com/hbmartin/pytube3/> for source. 
+- as python is progressing, pytube has to adapt and this is an attempt
+  to do this for python3 as the maintainer is swamped with demands
+
+* ERROR
+- could not download file because of error
+- <https://github.com/nficano/pytube/issues/467>
+* corrections
+- reading thru the comments by @braindotai
+  
+  <https://github.com/nficano/pytube/issues/467#issuecomment-578491033>
+
+  clone repo from https://github.com/hbmartin/pytube3
+  and paste pytube folder from the repo to the site-packages
+  directory, everything should work fine
+
+* undertook the following:
+- downloaded pytube3
+
+  $ git clone https://github.com/hbmartin/pytube3
+
+  $ cd pytube3
+
+- killed the previous installs, carefully
+
+  $ cd /opt/local/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/
+  $ ls pyt*
+  $ rmdir pyt*
+   
+  # yeah, check you want to remove before you kill!
+  $ sudo rmdir pyt*
+
+- install new pytube3
+
+  $ sudo python3 setup.py install
+  $ cd ../pyoink
+  $ ./py.py -h 
+  $ ./py.py -u https://youtube.com/watch?v=XXXXXYYYXX -t "Some dodgy youtube video" -l
+
+- should work!
+
+
 2019OCT19
 * SLANT @ <http://www.network-science.de/ascii/>
 * improvements to reporting stream
