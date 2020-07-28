@@ -11,7 +11,9 @@
 #       /____/                          
 #                    
 # name: py.py
-# date: 2019OCT16
+# date: 2020JUL09
+#       2020JUN08
+#       2019OCT16
 #       2018NOV07
 #       2018OCT11
 #       2016OCT21
@@ -51,7 +53,8 @@ PROG_NAME = "PYOINK"
 DESTINATION = "/Users/pr/Music"
 ITAG_VID_TYPE_LO = "18"            # this gives .mp4,360
 ITAG_VID_TYPE_HI = "22"            # this gives .mp4,720
-ITAG_VID_TYPE = ITAG_VID_TYPE_LO   # default to LO
+ITAG_VID_TYPE_BEST = "137"         # .mp4, 1028
+ITAG_VID_TYPE = ITAG_VID_TYPE_LO 
 
 
 #======
