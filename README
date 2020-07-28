@@ -17,6 +17,13 @@
 
 #### pyoink
 
+2020JUL28
+* suggested hack detailed in TODO
+
+* pytube down
+- was being developed at: <https://github.com/get-pytube/pytube3>
+  now being claimed at  : <https://github.com/H4KKR/pytubeX>
+
 2020FEB10
 * switched to <https://github.com/hbmartin/pytube3/> for source. 
 - as python is progressing, pytube has to adapt and this is an attempt
