@@ -26,6 +26,9 @@
 
 - sources:
 
+   youtube-dl
+   <https://github.com/ytdl-org/youtube-dl/tree/a4ed50bb84658b7e77cbb37597c36fa62a9acd4b#developer-instructions>
+
    rebuild ports
    <https://guide.macports.org/#using.port.selfupdate>
 
