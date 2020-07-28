@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # ~*~ encoding: utf-8 ~*~
 
 
@@ -11,7 +11,8 @@
 #       /____/                          
 #                    
 # name: py.py
-# date: 2020JUL09
+# date: 2020JUL28
+#       2020JUL09
 #       2020JUN08
 #       2019OCT16
 #       2018NOV07
@@ -26,7 +27,11 @@
 # usge: ./py.py -u https://www.youtube.com/watch?v=RANDOM_ID URL
 #               -t "title of video"                          TITLE
 #               -l                                           LOG 
+#               -a                                           ALT
 #=====
+
+
+from __future__ import unicode_literals
 
 
 import os
@@ -44,17 +49,43 @@ from tools import build_fpn
 from tools import build_ext
 
 
-from pytube import YouTube
 from pprint import pprint
 
 
-VERSION = "0.2.3"
+VERSION = "0.2.4"
 PROG_NAME = "PYOINK"
 DESTINATION = "/Users/pr/Music"
 ITAG_VID_TYPE_LO = "18"            # this gives .mp4,360
 ITAG_VID_TYPE_HI = "22"            # this gives .mp4,720
 ITAG_VID_TYPE_BEST = "137"         # .mp4, 1028
 ITAG_VID_TYPE = ITAG_VID_TYPE_LO 
+
+# 
+# lets make sure we can use pytube and/or youtube_dl
+#
+FOUND = False
+try:
+    from pytube import YouTube
+    FOUND = True
+except ImportError as e:
+    print("")
+    print("---- WARNING ----")
+    print('{} {} Warning: Must use -a Alt option to download:\n<{}>'.format(PROG_NAME, VERSION, e))
+    print("---- WARNING ----")
+    print("")
+
+try:
+    import youtube_dl
+except ImportError as e:
+    print("")
+    print("---- WARNING ----")
+    print('{} {} Warning: Alt download cannot be selected:\n<{}>'.format(PROG_NAME, VERSION, e))
+    print("---- WARNING ----")
+    print("")   
+    if not FOUND: 
+        sys.exit(1)
+ 
+
 
 
 #======
@@ -68,14 +99,16 @@ def main():
     parser.add_option("-v", "--video", dest="video", help="display video details")
     parser.add_option("-i", "--itag", dest="itag", help="set itag video display option")
     parser.add_option("-l", "--log",  dest="log", action="store_true", help="log the results to file")
+    parser.add_option("-a", "--alt",  dest="alt", action="store_true", help="alternative download")
     options, args = parser.parse_args()
 
 
     if options.url:
         url = options.url 
         if options.title:
-            print("")
+
             print("{} v{} Starting...".format(PROG_NAME, VERSION))
+            print("")
             print("* url: <{}> ({})".format(url, len(url)))
             print("* title <'{}'>".format(options.title))
 
@@ -86,17 +119,6 @@ def main():
             title = title.replace(" ","-")  # replace space with dash
             print("* dest <{}>/<{}>".format(DESTINATION, title))
 
-
-            youtube = YouTube(url)
-
-            # video itag option(s) to show
-            if options.video: 
-                print("* show video options")
-                for option in youtube.streams.all():
-                    print("<{}>".format(option))
-                sys.exit(0)
-
-
             # set video itag option to download
             if options.itag:
                 itag = options.itag
@@ -104,32 +126,56 @@ def main():
                 itag = ITAG_VID_TYPE
             print("* video/sound ITAG option: <{}>".format(itag))
 
+
+            # alternative HACK
+            if not options.alt: 
+                youtube = YouTube(url)
+
+                # video itag option(s) to show
+                if options.video: 
+                    print("* show video options")
+                    for option in youtube.streams.all():
+                        print("<{}>".format(option))
+                    sys.exit(0)
            
-            # set for specified video and sound 
-            stream = youtube.streams.get_by_itag(itag)
+                # set for specified video and sound 
+                stream = youtube.streams.get_by_itag(itag)
 
 
-            # -------- start download --------
-            print("* stream")
-            print("- abr\t\t\t({})".format(stream.abr))
-            print("- audio codec\t\t({})".format(stream.audio_codec))
-            #if stream.default_filename: print("\t- default filename\t\t\t({})".format(stream.default_filename))
-            print("- filesize\t\t({})".format(stream.filesize))
-            print("- fps\t\t\t({})".format(stream.fps))
-            #print("- quality\t\t({})".format(stream.quality))
-            #print("- res\t\t\t({})".format(stream.res))
-            print("- resolution\t\t({})".format(stream.resolution))
-            #print("- s\t\t\t({})".format(stream.s))
-            #print("- sp\t\t\t({})".format(stream.sp))
-            print("- type\t\t\t({})".format(stream.type))
-            print("- url\t\t\t<{}>".format(stream.url))
-            print("- video codec\t\t\t({})".format(stream.video_codec))
-            try:
-                stream.download(output_path=DESTINATION, filename=title)
-                sys.stdout.write("* ok\n")
-            except KeyboardInterrupt:
-                sys.exit(1)
-            # -------- end download --------
+                # -------- start download --------
+                print("* stream")
+                print("- abr\t\t\t({})".format(stream.abr))
+                print("- audio codec\t\t({})".format(stream.audio_codec))
+                #if stream.default_filename: print("\t- default filename\t\t\t({})".format(stream.default_filename))
+                print("- filesize\t\t({})".format(stream.filesize))
+                print("- fps\t\t\t({})".format(stream.fps))
+                #print("- quality\t\t({})".format(stream.quality))
+                #print("- res\t\t\t({})".format(stream.res))
+                print("- resolution\t\t({})".format(stream.resolution))
+                #print("- s\t\t\t({})".format(stream.s))
+                #print("- sp\t\t\t({})".format(stream.sp))
+                print("- type\t\t\t({})".format(stream.type))
+                print("- url\t\t\t<{}>".format(stream.url))
+                print("- video codec\t\t\t({})".format(stream.video_codec))
+                try:
+                    stream.download(output_path=DESTINATION, filename=title)
+                    sys.stdout.write("* ok\n")
+                except KeyboardInterrupt:
+                    sys.exit(1)
+                # -------- end download --------
+            else:
+                # youtube_dl options
+                ydl_opts = {
+                    'format' : itag,              # video itag option
+                    'outtmpl': os.path.join(DESTINATION, "{}.%(ext)s".format(title))
+                }
+
+                try:
+                    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                        ydl.download([url])
+                except Exception as e:
+                    print('Alt download error:\n<{}>'.format(e))
+                    sys.exit(1)
 
 
             print("* url:\t\t{}\n* title:\t{}\n* filepath:\t{}".format(url, options.title.lower(), os.path.join(DESTINATION, title.strip())))
@@ -142,11 +188,20 @@ def main():
                 # find explicit details of stream 
                 # src: <https://python-pytube.readthedocs.io/en/latest/_modules/pytube/streams.html#Stream>
                 opts = {}
-                opts['filesize']=youtube.streams.get_by_itag(itag).filesize
-                #opts['quality']=youtube.streams.get_by_itag(itag).quality
-                opts['resolution']=youtube.streams.get_by_itag(itag).resolution
-                opts['includes_video_track']=youtube.streams.get_by_itag(itag).includes_video_track
-                opts['subtype']=youtube.streams.get_by_itag(itag).subtype
+
+                opts['version'] = VERSION
+
+                if not options.alt: 
+                    opts['code'] = "pytube3"
+                    opts['filesize']=youtube.streams.get_by_itag(itag).filesize
+                    #opts['quality']=youtube.streams.get_by_itag(itag).quality
+                    opts['resolution']=youtube.streams.get_by_itag(itag).resolution
+                    opts['includes_video_track']=youtube.streams.get_by_itag(itag).includes_video_track
+                    opts['subtype']=youtube.streams.get_by_itag(itag).subtype
+                else:
+                    opts['resolution']=itag
+                    opts['code'] = "youtube_dl"
+
 
                 # file directory and filename
                 fn = build_fn(PROG_NAME.lower())

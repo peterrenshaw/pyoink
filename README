@@ -18,6 +18,23 @@
 #### pyoink
 
 2020JUL28
+* HACK, HACK, HACK
+- now using alternative youtube-dl as a backup option
+- bit hacky as I've never used the lib before but I've got the outline of a re-write
+- got stuck on the DESTINATION and filename. Once I'd worked out the template format
+  it was easy. Now playing a downloaded file :)
+
+- sources:
+
+   rebuild ports
+   <https://guide.macports.org/#using.port.selfupdate>
+
+   exceptions
+   <https://docs.python.org/3/library/exceptions.html>
+
+   templates 
+   <https://stackoverflow.com/questions/18054500/how-to-use-youtube-dl-from-a-python-program> 
+
 * suggested hack detailed in TODO
 
 * pytube down
