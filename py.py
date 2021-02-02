@@ -11,7 +11,8 @@
 #       /____/                          
 #                    
 # name: py.py
-# date: 2020JUL28
+# date: 2021JAN01
+#       2020JUL28
 #       2020JUL09
 #       2020JUN08
 #       2019OCT16
@@ -52,7 +53,7 @@ from tools import build_ext
 from pprint import pprint
 
 
-VERSION = "0.2.4"
+VERSION = "0.2.5"
 PROG_NAME = "PYOINK"
 DESTINATION = "/Users/pr/Music"
 ITAG_VID_TYPE_LO = "18"            # this gives .mp4,360
